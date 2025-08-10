@@ -1,0 +1,49 @@
+<concept_spec>
+
+concept User
+
+purpose 
+    to associate identifying information with individuals
+
+state
+    a set of Users with
+        a name String
+        an email String
+
+actions
+    register (user: String, name: String, email: String) : (user: String)
+        associate user with users
+        associate name and email if both unique and valid
+        return the user reference
+    register (user: String, name: String, email: String) : (error: String)
+        if either name or email is invalid or not unique, describe error
+        return the error description
+
+    update (user: String, name: String) : (user: String)
+        if name is unique, update user's name
+        return the user reference
+    update (user: String, name: String) : (error: String)
+        if name is not-unique, describe error
+        return the error description
+
+    update (user: String, email: String) : (user: String)
+        if email is unique and valid, update user's email
+        return the user reference
+    update (user: String, email: String) : (error: String)
+        if email is not-unique or invalid, describe error
+        return the error description
+
+queries
+    _getByName (name: String) : (user: String, name: String, email: String)
+        fetch user by name
+    _getByEmail (email: String) : (user: String, name: String, email: String)
+        fetch user by email
+    _get (user: String) : (user: String, name: String, email: String)
+        fetch user details
+
+operational principle
+    after register (user: "u1", name: "xavier", email: "xavier@example.com") : (user: "u1")
+    and update (user: "u1", name: "xavier") : (user: "u1")
+    for any user u such that u's name is "xavier", u must be "u1"
+
+</concept_spec>

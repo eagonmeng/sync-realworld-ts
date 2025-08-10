@@ -1,0 +1,38 @@
+<concept_spec>
+
+concept Tag
+
+purpose
+    to categorize targets with relevant keywords
+
+state
+    a set of AllTags with
+        a tag String
+    a set of TargetTags with
+        a target String
+        a tag String
+
+actions
+    add (target: String, tag: String) : (tag: String)
+        add tag to all tags if not already present
+        add tag to target's tags
+        return tag
+    
+    remove (target: String, tag: String) : (tag: String)
+        remove tag from target's tags
+        remove tag from all tags if no target refers to tag anymore
+        return tag
+
+queries
+    _getAllTags () : (tag: String)
+        get all unique tags
+    _getByTarget (target: String) : (tag: String)
+        get all tags for target
+    _getTargetsByTag (tag: String) : (target: String)
+        get all targets with tag
+
+operational principle
+    after add (target: "my-article", tag: "programming") : (tag: "programming")
+    target "my-article" has tag "programming" and "programming" exists in all tags
+
+</concept_spec>

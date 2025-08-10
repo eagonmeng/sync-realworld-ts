@@ -1,0 +1,19 @@
+{
+  "imports": {
+    "mongodb": "npm:mongodb",
+    "bcrypt": "npm:bcrypt",
+    "jsonwebtoken": "npm:jsonwebtoken",
+    "@std/assert": "jsr:@std/assert",
+    "@std/dotenv": "jsr:@std/dotenv"
+  },
+  "tasks": {
+    "start": "deno run --allow-net --allow-env --allow-read --allow-write server.ts",
+    "dev": "deno run --allow-net --allow-env --allow-read --allow-write --watch server.ts",
+    "db:reset": "deno run --allow-net --allow-env --allow-read scripts/reset-db.ts"
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "lib": ["deno.window", "es2022"],
+    "strict": true
+  }
+}

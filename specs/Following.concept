@@ -1,0 +1,54 @@
+<concept_spec>
+
+concept Following
+
+purpose
+    to track which users follow which other users
+
+state
+    a set of Follows with
+        a follower String
+        a target String
+    a set of FollowerCounts with
+        a user String
+        a count Number
+
+actions
+    follow (follower: String, target: String) : (target: String)
+        if follower != target and target not already followed by follower
+        add follow relationship between follower and target
+        increment follower count for target
+        return target
+    
+    follow (follower: String, target: String) : (error: String)
+        if follower = target, describe error as "Cannot follow yourself"
+        if target already followed by follower, describe error as "Already following user"
+        return error description
+        
+    unfollow (follower: String, target: String) : (target: String)
+        if target is followed by follower
+        remove follow relationship between follower and target
+        decrement follower count for target
+        return target
+        
+    unfollow (follower: String, target: String) : (error: String)
+        if target not followed by follower, describe error as "Not following user"
+        return error description
+
+queries
+    _isFollowing (follower: String, target: String) : (following: Boolean)
+        check if follower follows target
+    _getFollowing (follower: String) : (target: String)
+        get all users that follower follows
+    _getFollowers (target: String) : (follower: String)
+        get all followers of target
+    _getFollowerCount (user: String) : (user: String, count: Number)
+        get follower count for user
+
+operational principle
+    after follow (follower: "alice", target: "bob") : (target: "bob")
+    then "bob" is followed by "alice" and follower count for "bob" increased by 1
+    and after unfollow (follower: "alice", target: "bob") : (target: "bob")
+    then "bob" is not followed by "alice" and follower count for "bob" decreased by 1
+
+</concept_spec>

@@ -1,0 +1,37 @@
+<concept_spec>
+
+concept JWT
+
+purpose 
+    to authenticate users with stateless tokens that represent user identity
+
+state
+    a set of Tokens with
+        a user String
+        a token String
+
+actions
+    generate (user: String) : (token: String)
+        create a valid JWT token with the user's subject identifier 
+        sign the token using the private secret key
+        associate user with the token
+        return the string of the signed token
+
+    verify (token: String) : (user: String)
+        verify the token's signature using the private secret key
+        if valid, find user associated with token
+        return the user
+    
+    verify (token: String) : (error: String)
+        if token signature is invalid or verification fails, describe error
+        return the error description
+
+queries
+    _getUser (token: String) : (user: String, token: String)
+        get user associated with token
+
+operational principle
+    after generate (user: "u") : (token: "t") and verify (token: "t") : (user: "v")
+    then "u" equals "v", demonstrating that the token identifies the user correctly
+
+</concept_spec>

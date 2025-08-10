@@ -1,0 +1,44 @@
+<concept_spec>
+
+concept Profile
+
+purpose 
+    to associate descriptive information with individuals
+
+state
+    a set of Profiles with
+        a user String
+        a bio String
+        a image String
+
+actions
+    register (profile: String, user: String) : (profile: String)
+        add profile to profiles
+        associate user with profile
+        add a default blank bio and image to profile
+        return profile
+
+    update (profile: String, bio: String) : (profile: String)
+        update profile with bio
+        return profile
+
+    update (profile: String, image: String) : (profile: String)
+        if image is valid (URL, base64, etc.)
+        update profile with image
+        return profile
+    update (profile: String, image: String) : (error: String)
+        if image is invalid, describe error
+        return error
+
+queries
+    _getByUser (user: String) : (profile: String, user: String, bio: String, image: String)
+        fetch profile by user
+    _get (profile: String) : (profile: String, user: String, bio: String, image: String)
+        fetch profile details
+
+operational principle
+    after register (profile: "p", user: "u") : (profile: "p") 
+    and update (profile: "p", bio: "I like turtles") : (profile: "p")
+    the profile "p" for user "u" has bio "I like turtles"
+
+</concept_spec>

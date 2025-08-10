@@ -1,0 +1,56 @@
+<concept_spec>
+
+concept Comment
+
+purpose
+    to allow users to add commentary on generic targets
+
+state
+    a set of Comments with
+        a body String
+        a createdAt String
+        a updatedAt String
+        a author String
+        a target String
+
+actions
+    create (comment: String, body: String, author: String, target: String) : (comment: String)
+        add comment to comments
+        associate body, author, target with comment
+        set createdAt and updatedAt to current timestamp
+        return comment
+    
+    create (comment: String, body: String, author: String, target: String) : (error: String)
+        if body is empty or invalid, describe error
+        return error description
+        
+    update (comment: String, body: String) : (comment: String)
+        if comment exists, update body
+        update updatedAt to current timestamp
+        return comment
+        
+    update (comment: String, body: String) : (error: String)
+        if comment doesn't exist, describe error
+        return error description
+        
+    delete (comment: String) : (comment: String)
+        if comment exists, remove comment and all associations
+        return comment
+        
+    delete (comment: String) : (error: String)
+        if comment doesn't exist, describe error
+        return error description
+
+queries
+    _get (comment: String) : (comment: String, body: String, createdAt: String, updatedAt: String, author: String, target: String)
+        fetch comment details
+    _getByTarget (target: String) : (comment: String, body: String, createdAt: String, updatedAt: String, author: String, target: String)
+        fetch all comments for a target
+    _getByAuthor (author: String) : (comment: String, body: String, createdAt: String, updatedAt: String, author: String, target: String)
+        fetch all comments by author
+
+operational principle
+    after create (comment: "c", body: "Great article!", author: "u", target: "article") : (comment: "c")
+    the state contains a comment "c" with body "Great article!" authored by "u" on target "article"
+
+</concept_spec>

@@ -1,0 +1,40 @@
+<concept_spec>
+
+concept Favorite
+
+purpose
+    to track which targets users have favorited
+
+state
+    a set of Favorites with
+        a user String
+        a target String
+    a set of FavoriteCounts with
+        a target String
+        a count Number
+
+actions
+    add (user: String, target: String) : (target: String)
+        add target to user's favorites
+        increment favorite count for target
+        return target
+    
+    remove (user: String, target: String) : (target: String)
+        remove target from user's favorites
+        decrement favorite count for target
+        return target
+
+queries
+    _isFavorited (user: String, target: String) : (favorited: Boolean)
+        check if user has favorited target
+    _getFavorites (user: String) : (target: String)
+        get all targets favorited by user
+    _getFavoriteCount (target: String) : (target: String, count: Number)
+        get favorite count for target
+
+operational principle
+    after add (user: "u1", target: "my-article") : (target: "my-article")
+    and add (user: "u2", target: "my-article") : (target: "my-article")
+    favorite count for "my-article" equals 2
+
+</concept_spec>

@@ -1,7 +1,7 @@
 ## RealWorld API with Concept Design
 
 Full approach details and engine repo:
-[Concept Design and Sync Engine](https://example.com/concept-design)
+[Concept Design and Sync Engine](https://github.com/eagonmeng/sync-blank)
 
 A RealWorld backend that implements the official API spec using Deno,
 TypeScript, and MongoDB. The internals are organized around small, independent

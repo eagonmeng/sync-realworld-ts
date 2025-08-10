@@ -54,8 +54,7 @@ as documentation for the approach.
   ```
 
 Server runs at `http://localhost:3000`. Endpoints follow the RealWorld spec —
-see:
-[RealWorld backend endpoints](https://realworld-docs.netlify.app/docs/specs/backend-specs/endpoints).
+see: [RealWorld specification](https://realworld-docs.netlify.app).
 
 ### Architecture goals
 

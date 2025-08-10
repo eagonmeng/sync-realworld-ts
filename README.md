@@ -14,10 +14,10 @@ as documentation for the approach.
 
 - **Separation of concerns**: each concept has one responsibility; no
   cross-imports.
-- **Declarative wiring**: change behavior by editing synchronizations, not
-  business objects.
-- **Composability and testing**: concepts and syncs run and test cleanly in
-  isolation.
+- **Incremental development**: change behavior by editing granular
+  synchronizations, which do not impact the rest of the application.
+- **Maintaining integrity**: evolution of the app occurs in structured and
+  isolated areas.
 
 ### Directory overview
 
